@@ -15,7 +15,7 @@ function titleCase(str) {
 
         var gif = $(this).attr("data-name");
         var limit=12;
-        var queryURL ="http://api.giphy.com/v1/gifs/search?q="+gif+"&api_key=hhBv85lxTTC42VBNDR2XgvLeyH4or0R1&limit="+limit;
+        var queryURL ="https://api.giphy.com/v1/gifs/search?q="+gif+"&api_key=hhBv85lxTTC42VBNDR2XgvLeyH4or0R1&limit="+limit;
 
         // Creating an AJAX call for the specific gif button being clicked
         $.ajax({
