@@ -8,7 +8,7 @@ function titleCase(str) {
 }
 
  // Initial array of gifs
-      var topics = ["Friends", "Breaking Bad", "Spider-Man", "Naruto"];
+      var topics = ["Friends", "Breaking Bad", "Spider-Man", "Elephant"];
 
       // displayGifInfo function re-renders the HTML to display the appropriate content
       function displayGifInfo() {
@@ -22,7 +22,6 @@ function titleCase(str) {
           url: queryURL,
           method: "GET"
         }).then(function(response) {
-          console.log(response);
           $("#gifs-view").empty();
             for(i=0;i<limit;i++){
               var newDiv = $("<div></div>");
@@ -30,7 +29,7 @@ function titleCase(str) {
               var newGif = $("<img>");
               var newRating = $("<p></p>");
               var src = response.data[i].images.original.url.split("?cid")[0];
-              $(newGif).attr('src', src.replace(/\.gif/i, "_s.gif")).addClass("gif").attr("height", "180px").attr("width", "240px");
+              $(newGif).attr('src', src.replace(/\.gif/i, "_s.gif")).addClass("gif");
               $(newDiv).addClass("col-md-3 col-sm-6");
               $(gifContainer).addClass("gif-container");
               $(newRating).addClass("rating");
@@ -48,7 +47,7 @@ function titleCase(str) {
         $("#buttons-view").empty();
         for (var i = 0; i < topics.length; i++) {
           var a = $("<button>");
-          a.addClass("gif-btn btn btn-outline-success");
+          a.addClass("gif-btn col btn btn-outline-success");
           a.attr("data-name", topics[i]);
           a.text(topics[i]);
           $("#buttons-view").append(a);
