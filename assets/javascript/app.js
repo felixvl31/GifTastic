@@ -31,17 +31,22 @@ function displayGifInfo() {
     for(i=0;i<limit;i++){
       var newDiv = $("<div></div>");
       var gifContainer = $("<div></div>");
+      var titleGif = $("<p></p>");
       var newGif = $("<img>");
       var newRating = $("<p></p>");
       var downloadBtn = $("<a target='_blank'></a>");
+      //Var depends of data
+      var title = response.data[i].title.split("GIF")[0];
       var src = response.data[i].images.original.url.split("?cid")[0];
-      $(downloadBtn).attr('class',"DownloadButton").attr('href',src).text("Download");
-      $(newGif).attr('src', src.replace(/\.gif/i, "_s.gif")).addClass("gif");
+      //Add class, attributes and text to 
       $(newDiv).addClass("col-md-3 col-sm-6");
       $(gifContainer).addClass("gif-container"+" "+colors[backgroundColor]);
-      $(newRating).addClass("rating");
-      $(newRating).text("Rating: "+response.data[i].rating.toUpperCase());
-      $(gifContainer).append(newGif).append(newRating).append(downloadBtn);
+      $(titleGif).addClass("title-Gif").text(titleCase(title));
+      $(newGif).attr('src', src.replace(/\.gif/i, "_s.gif")).addClass("gif");
+      $(newRating).addClass("rating").text("Rating: "+response.data[i].rating.toUpperCase());
+      $(downloadBtn).attr('class',"DownloadButton").attr('href',src).text("Download");
+      //Append Everything
+      $(gifContainer).append(titleGif).append(newGif).append(newRating).append(downloadBtn);
       $(newDiv).append(gifContainer);
       $("#gifs-view").append(newDiv);
       //Change class for Background Color on each gif
@@ -119,10 +124,5 @@ $('body').on('click', '.gif', function() {
   }
 });
 
-$(document).on("click", "#myBtn", topFunction );
-
-function download(file)
-{
- window.location=file;
-}
+$(document).on("click", "#topBtn", topFunction );
 
