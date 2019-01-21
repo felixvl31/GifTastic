@@ -33,13 +33,15 @@ function displayGifInfo() {
       var gifContainer = $("<div></div>");
       var newGif = $("<img>");
       var newRating = $("<p></p>");
+      var downloadBtn = $("<a target='_blank'></a>");
       var src = response.data[i].images.original.url.split("?cid")[0];
+      $(downloadBtn).attr('class',"DownloadButton").attr('href',src).text("Download");
       $(newGif).attr('src', src.replace(/\.gif/i, "_s.gif")).addClass("gif");
       $(newDiv).addClass("col-md-3 col-sm-6");
       $(gifContainer).addClass("gif-container"+" "+colors[backgroundColor]);
       $(newRating).addClass("rating");
       $(newRating).text("Rating: "+response.data[i].rating.toUpperCase());
-      $(gifContainer).append(newGif).append(newRating);
+      $(gifContainer).append(newGif).append(newRating).append(downloadBtn);
       $(newDiv).append(gifContainer);
       $("#gifs-view").append(newDiv);
       //Change class for Background Color on each gif
@@ -118,4 +120,9 @@ $('body').on('click', '.gif', function() {
 });
 
 $(document).on("click", "#myBtn", topFunction );
+
+function download(file)
+{
+ window.location=file;
+}
 
