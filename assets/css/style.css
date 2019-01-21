@@ -12,15 +12,14 @@ body{
   background-color:#ffffff;
 }
 
-
 /* Title */
 .title{
   text-align: center;
   font-size: 100px;
   font-weight: 800px;
-   font-family: "Product Sans Bold";
+  font-family: "Product Sans Bold";
+  padding-top:150px;
 }
-
 .Red-Font{
 color:#eb4132;
 }
@@ -49,9 +48,7 @@ color:#fbbd01;
 
 /* Add Buttons Bar */
 .addBar{
-  align-items: center;
-  align-self: auto;
-  align-content: center;
+padding-bottom:40px;
 }
 .input-text{
    margin:5px;
@@ -71,7 +68,7 @@ input{
 input:hover,#add-gif:hover{
   border-color: #a0a0a0 #b9b9b9 #b9b9b9 #b9b9b9;
 }
-input:focus,#add-gif:hover{
+input:focus,#add-gif:hover,#add-more-gif:hover,#myBtn:hover{
   border-color:#4d90fe;
 }
 input[type="submit"] {
@@ -82,7 +79,7 @@ input[type="submit"] {
   cursor: default;
   font-size: 18px;
   font-weight: bold;
-  width: 140px;
+  width: 160px;
   padding: 0 16px;
   height:36px;
 
@@ -117,14 +114,12 @@ input[type="submit"]:hover {
 .Green:hover{
   background-color:#31a952;
 }
-
 .gif{
   margin-top:15px;
   border-radius: 10px;
   width:90%;
   height:10rem;
 }
-
 .gif:hover{
 cursor: pointer;
 
@@ -132,13 +127,29 @@ cursor: pointer;
 .rating{
   margin:0px;
 }
-
 .gif-container:hover{
   color: #eaeaea;
 }
 
+/* Window */
+.content{
+  min-height : calc(100vh - 60px);
+}
+.footer {
+  height: 20px;
+}
 
+/* Media Query */
 @media only screen and (max-width: 580px) {
+  .title{
+    font-size: 40px;
+    padding-top:20px;
+  }
+  
+  .addBar{
+    padding-bottom:20px;
+  }
+  
   .gif{
     height:15rem;
   }
