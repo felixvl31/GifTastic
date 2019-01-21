@@ -12,20 +12,22 @@
 
 <body>
   <div class="container">
-    <h1 class="title">Gif Search</h1>
+    <h1 class="title"><span class="Blue-Font">Gi</span><span class="Red-Font">f</span> <span class="
+    Yellow-Font">Se</span ><span class="Blue-Font">a</span><span class="Green-Font">rc</span><span class="Red-Font">h</span></h1>
+
+    <div class="row justify-content-center">
+        <form id="gif-form" >
+          <input class="col-6" type="text"  placeholder="I'm Feeling Lucky"  type="text" id="gif-input" >
+
+          <!-- Button triggers new topic to be added -->
+          <input class="col-6 btn-add" id="add-gif" type="submit" value="Add a Topic!">
+        </form>
+    </div>
 
     <!-- Rendered Buttons will get Dumped Here  -->
     <div class= "row" id="buttons-view"></div>
 
-    <form id="gif-form" class="form-inline">
-      <label class="input-text" for="gif-input">Add a Topic:</label>
-      <input class="form-control" placeholder="Search"  type="text" id="gif-input">
-
-      <!-- Button triggers new topic to be added -->
-      <input class="btn btn-success" id="add-gif" type="submit" value="Add a Topic!">
-    </form>
-
-    <!-- Movies will Get Dumped Here -->
+    <!-- Gifs will Get Dumped Here -->
     <div class ="row" id="gifs-view"></div>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

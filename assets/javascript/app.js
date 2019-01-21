@@ -9,12 +9,14 @@ function titleCase(str) {
 
  // Initial array of gifs
       var topics = ["Friends", "Breaking Bad", "Spider-Man", "Elephant"];
+      var colors = ["Blue","Red","Yellow","Blue","Green","Red"];
 
       // displayGifInfo function re-renders the HTML to display the appropriate content
       function displayGifInfo() {
 
         var gif = $(this).attr("data-name");
         var limit=12;
+        var backgroundColor = 0;
         var queryURL ="https://api.giphy.com/v1/gifs/search?q="+gif+"&api_key=hhBv85lxTTC42VBNDR2XgvLeyH4or0R1&limit="+limit;
 
         // Creating an AJAX call for the specific gif button being clicked
@@ -31,12 +33,17 @@ function titleCase(str) {
               var src = response.data[i].images.original.url.split("?cid")[0];
               $(newGif).attr('src', src.replace(/\.gif/i, "_s.gif")).addClass("gif");
               $(newDiv).addClass("col-md-3 col-sm-6");
-              $(gifContainer).addClass("gif-container");
+              $(gifContainer).addClass("gif-container"+" "+colors[backgroundColor]);
               $(newRating).addClass("rating");
               $(newRating).text("Rating: "+response.data[i].rating.toUpperCase());
               $(gifContainer).append(newGif).append(newRating);
               $(newDiv).append(gifContainer);
               $("#gifs-view").append(newDiv);
+              //Change class for Background Color each button
+              backgroundColor++;
+              if (backgroundColor==6){
+                backgroundColor=0;
+              }
             }
         });
 
@@ -45,12 +52,17 @@ function titleCase(str) {
       // Function for displaying gif data
       function renderButtons() {
         $("#buttons-view").empty();
+        var buttonColor = 0;
         for (var i = 0; i < topics.length; i++) {
           var a = $("<button>");
-          a.addClass("gif-btn col btn btn-outline-success");
+          a.addClass("gif-btn col btn btn-light "+colors[buttonColor]);
           a.attr("data-name", topics[i]);
           a.text(topics[i]);
           $("#buttons-view").append(a);
+          buttonColor++;
+          if (buttonColor==6){
+            buttonColor=0;
+          }
         }
       }
 

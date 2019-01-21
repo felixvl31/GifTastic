@@ -1,33 +1,121 @@
+@font-face {
+  font-family: "Product Sans";
+   src: url("../fonts/ProductSans.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Product Sans Bold";
+   src: url("../fonts/ProductSansBold.ttf") format("truetype");
+}
+
+body{
+  font-family: "Product Sans";
+  background-color:#ffffff;
+}
+
+
 /* Title */
 .title{
   text-align: center;
+  font-size: 100px;
+  font-weight: 800px;
+   font-family: "Product Sans Bold";
+}
+
+.Red-Font{
+color:#eb4132;
+}
+.Blue-Font{
+color:#4086f4;
+}
+.Green-Font{
+color:#31a952;
+}
+.Yellow-Font{
+color:#fbbd01;
 }
 
 /* Buttons */
 .gif-btn{
   margin:5px;
+  font-size: 18px;
   font-weight: 700; 
+  width:auto;
+  border-radius: 20px;
+}
+.gif-btn:hover{
+ border-color:#4d90fe;
+ color:#eaeaea;
 }
 
 /* Add Buttons Bar */
+.addBar{
+  align-items: center;
+  align-self: auto;
+  align-content: center;
+}
 .input-text{
    margin:5px;
    font-weight: 700;
 }
-#add-gif{
-   margin:5px;
-   font-weight: 700;
+input{
+  border: none;
+  padding: 10px;
+  margin: 10px;
+  height: 35px;
+  width:30%;
+  border:1px solid #eaeaea;
+  border-radius:20px;
+  outline:none;
+  font-family: "Product Sans Bold";
 }
+input:hover,#add-gif:hover{
+  border-color: #a0a0a0 #b9b9b9 #b9b9b9 #b9b9b9;
+}
+input:focus,#add-gif:hover{
+  border-color:#4d90fe;
+}
+input[type="submit"] {
+  border-radius: 2px;
+  background: #f2f2f2;
+  border: 1px solid #f2f2f2;
+  color: #757575;
+  cursor: default;
+  font-size: 18px;
+  font-weight: bold;
+  width: 140px;
+  padding: 0 16px;
+  height:36px;
 
+}
+input[type="submit"]:hover {
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  background: #f8f8f8;
+  border: 1px solid #c6c6c6;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  color: #222;
+}
 
 /* Gifs */
 .gif-container{
-  border : 2px solid black;
+  border-color: #a0a0a0 #b9b9b9 #b9b9b9 #b9b9b9;
   text-align: center;
   align-items: center;
   border-radius: 10px;
   font-weight: 700;
   margin-bottom:20px;
+
+}
+.Red:hover{
+  background-color:#eb4132;
+}
+.Blue:hover{
+  background-color:#4086f4;
+}
+.Yellow:hover{
+  background-color:#fbbd01;
+}
+.Green:hover{
+  background-color:#31a952;
 }
 
 .gif{
@@ -36,6 +124,22 @@
   width:90%;
   height:10rem;
 }
+
+.gif:hover{
+cursor: pointer;
+
+}
 .rating{
   margin:0px;
+}
+
+.gif-container:hover{
+  color: #eaeaea;
+}
+
+
+@media only screen and (max-width: 580px) {
+  .gif{
+    height:15rem;
+  }
 }
