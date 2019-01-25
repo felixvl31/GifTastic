@@ -14,19 +14,20 @@ function titleCase(str) {
 var topics = ["Elephant", "Breaking Bad", "Spider-Man", "Airplane","Computers"];
 var colors = ["Blue","Red","Yellow","Blue","Green","Red"];
 var limit=10;
+var offset=0;
 var currentGif = "";
 
 // displayGifInfo function re-renders the HTML to display the appropriate content
 function displayGifInfo() {
   var backgroundColor = 0;
-  var queryURL ="https://api.giphy.com/v1/gifs/search?q="+currentGif+"&api_key=hhBv85lxTTC42VBNDR2XgvLeyH4or0R1&limit="+limit;
+  var queryURL ="https://api.giphy.com/v1/gifs/search?q="+currentGif+"&api_key=hhBv85lxTTC42VBNDR2XgvLeyH4or0R1&limit="+limit+"&offset="+offset;
 
   // Creating an AJAX call for the specific gif button being clicked
   $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function(response) {
-    $("#gifs-view").empty();
+    // $("#gifs-view").empty();
     console.log(response);
     for(i=0;i<limit;i++){
       var newDiv = $("<div></div>");
@@ -34,7 +35,7 @@ function displayGifInfo() {
       var titleGif = $("<p></p>");
       var newGif = $("<img>");
       var newRating = $("<p></p>");
-      var downloadBtn = $("<a target='_blank'></a>");
+      var downloadBtn = $("<a download target='_blank'></a>");
       //Var depends of data
       var title = response.data[i].title.split("GIF")[0];
       var src = response.data[i].images.original.url.split("?cid")[0];
@@ -95,16 +96,26 @@ $("#add-gif").on("click", function(event) {
 // This function handles events where a more gifs button is clicked
 $(document).on("click","#add-more-gif", function(event) {
   event.preventDefault();
-  console.log(limit);
-  limit+=5;
+  console.log(offset);
+  if(offset ===0){
+    offset=10;
+  }
+  else{
+    offset+=5;
+  }
+  console.log(offset);
+  limit=5;
   displayGifInfo();
 });
 
 // Adding a click event listener to all elements with a class of "gif-btn"
 $(document).on("click", ".gif-btn", function(){
   currentGif = $(this).attr("data-name");
-  displayGifInfo(); 
+  offset=0;
   limit=10;
+  displayGifInfo(); 
+  $("#gifs-view").empty();
+
 });
 
 // Calling the renderButtons function to display the intial buttons
