@@ -83,11 +83,13 @@ function renderButtons() {
   for (var i = 0; i < topics.length; i++) {
     var a = $("<a>");
     var del = $("<button>");
+    var span =$("<span>");
     del.addClass("delBtn Red").attr("data-del",i).html('<i class="fa fa-times" aria-hidden="true"></i>');
     a.addClass("gif-btn col btn btn-light "+colors[buttonColor]);
     a.attr("data-name", topics[i]);
     a.text(topics[i]);
-    $("#buttons-view").append(a).append(del);
+    span.append(a).append(del)
+    $("#buttons-view").append(span);
     //Change class for Background Color each button
     buttonColor++;
     if (buttonColor==6){

@@ -43,6 +43,7 @@ color:#fbbd01;
   font-size: 18px;
   font-weight: 700; 
   width:auto;
+  height:40px;
 }
 .gif-btn:hover,.delBtn{
  border-color:#4d90fe;
@@ -50,16 +51,18 @@ color:#fbbd01;
 }
 .gif-btn{
   margin-right:0px;
-  border-radius:23px 0px 0px 23px;
+  border-radius:20px 0px 0px 20px;
+  vertical-align: top;
 }
 .delBtn{
+  padding: 6px 0px;
   margin-left:0px;
-  width:46px;
-  height:46px;
-  border-radius:0px 23px 23px 0px;
-  border: 1px solid #ffffff;
+  width:40px;
+  border-radius:0px 20px 20px 0px;
+  border: 1px solid #f8f9fa;
   color:black;
   background-color:#f8f9fa;
+  position: 0px;
 }
 .delBtn:hover{
   border: 1px solid #eb4132;
@@ -184,7 +187,7 @@ cursor: pointer;
 /* Media Query */
 @media only screen and (max-width: 580px) {
   .title{
-    font-size: 50px;
+    font-size: 60px;
     padding-top:20px;
   }
   
