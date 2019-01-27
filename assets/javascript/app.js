@@ -11,19 +11,23 @@ function titleCase(str) {
 }
 
 // Initial array of gifs and vars
-var topics = ["Elephant", "Breaking Bad", "Spider-Man", "Airplane","Computers"];
 var colors = ["Blue","Red","Yellow","Blue","Green","Red"];
 var limit=10;
 var offset=0;
 var currentGif = "";
 var favorites = JSON.parse(localStorage.getItem("favorites"));
+var topics = JSON.parse(localStorage.getItem("topics"));
 
 if(favorites === null){
   var favorites ={
   title:[],
   source:[],
   rating:[]
+  }
 }
+
+if (topics === null){
+  var topics = ["Elephant", "Breaking Bad", "Spider-Man", "Airplane","Computers"];
 }
 
 // displayGifInfo function re-renders the HTML to display the appropriate content
@@ -37,7 +41,6 @@ function displayGifInfo() {
     method: "GET"
   }).then(function(response) {
     // $("#gifs-view").empty();
-    console.log(response);
     for(i=0;i<limit;i++){
       var newDiv = $("<div></div>");
       var gifContainer = $("<div></div>");
@@ -78,11 +81,13 @@ function renderButtons() {
   $("#buttons-view").empty();
   var buttonColor = 0;
   for (var i = 0; i < topics.length; i++) {
-    var a = $("<button>");
+    var a = $("<a>");
+    var del = $("<button>");
+    del.addClass("delBtn Red").attr("data-del",i).html('<i class="fa fa-times" aria-hidden="true"></i>');
     a.addClass("gif-btn col btn btn-light "+colors[buttonColor]);
     a.attr("data-name", topics[i]);
     a.text(topics[i]);
-    $("#buttons-view").append(a);
+    $("#buttons-view").append(a).append(del);
     //Change class for Background Color each button
     buttonColor++;
     if (buttonColor==6){
@@ -136,7 +141,18 @@ $("#add-gif").on("click", function(event) {
   //Check if is not empty or is not already a button
   if(gif !== "" && currentGifList.indexOf(gif.toUpperCase())<0){
     topics.push(titleCase(gif));
+    localStorage.setItem("topics",JSON.stringify(topics));
   }
+  $("#gif-input").val("");
+  renderButtons();
+});
+
+//Delete Button
+$(document).on("click",".delBtn",function(){
+  event.preventDefault();
+  var index= $(this).attr("data-del");
+  topics.splice(index,1);
+  localStorage.setItem("topics",JSON.stringify(topics));
   renderButtons();
 });
 
@@ -175,7 +191,6 @@ $(document).on("click",".FavoriteButton",function(){
     favorites.title.push($(this).attr("data-title"));
     favorites.source.push($(this).attr("data-src-gif"));
     favorites.rating.push($(this).attr("data-rating"));
-
     localStorage.setItem("favorites",JSON.stringify(favorites));
   }
 });
