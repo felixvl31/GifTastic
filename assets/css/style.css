@@ -50,7 +50,7 @@ color:#fbbd01;
  color:#eaeaea;
 }
 
-/* Add Buttons Bar */
+/* Buttons */
 .addBar{
 padding-bottom:40px;
 }
@@ -99,18 +99,24 @@ input[type="submit"]:hover,.DownloadButton:hover,.FavoriteButton:hover,#show-fav
 .DownloadButton:hover,.FavoriteButton:hover,#show-favs:hover,.delFav:hover{
   text-decoration-line: none; 
 }
-
 .FavoriteButton{
   width:50px;
   height:24px;
 }
-
 .delFav:hover{
   background-color: #eb4132;
 }
-
 .FavoriteButton:hover,#show-favs:hover{
   background-color: #fbbd01;
+}
+
+/* Icon trick */
+* > .fa.fa-hover-show,
+*:hover > .fa.fa-hover-hidden {
+    display: none;
+}
+*:hover > .fa.fa-hover-show {
+    display: inline-block;
 }
 
 /* Gifs */

@@ -56,7 +56,9 @@ function displayGifInfo() {
       $(newGif).attr('src', src.replace(/\.gif/i, "_s.gif")).addClass("gif");
       $(newRating).addClass("rating").text("Rating: "+response.data[i].rating.toUpperCase());
       $(downloadBtn).addClass("DownloadButton").attr('href',src).text("Go to Original");
-      $(favBtn).addClass("FavoriteButton").attr("data-title",title).attr("data-src-gif",src.replace(/\.gif/i, "_s.gif")).attr("data-rating",response.data[i].rating).html('<i class="fa fa-star-o" aria-hidden="true"></i>');
+      $(favBtn).addClass("FavoriteButton").attr("data-title",title).attr("data-src-gif",src.replace(/\.gif/i, "_s.gif"));
+      $(favBtn).attr("data-rating",response.data[i].rating);
+      $(favBtn).html('<i class="fa-hover-hidden fa fa-star-o" aria-hidden="true"></i><i class="fa-hover-show fa fa-star" aria-hidden="true"></i>');
       //Append Everything
       $(gifContainer).append(titleGif).append(newGif).append(newRating).append(downloadBtn).append(favBtn);
       $(newDiv).append(gifContainer);
@@ -110,7 +112,7 @@ function displayFavorites() {
       $(titleGif).addClass("title-Gif").text(titleCase(title));
       $(newGif).attr('src', src).addClass("gif");
       $(newRating).addClass("rating").text("Rating: "+favorites.rating[i].toUpperCase());
-      $(delBtn).addClass("delFav").attr("data-number",i).text("Delete");
+      $(delBtn).addClass("delFav").attr("data-number",i).html('<i class="fa fa-times" aria-hidden="true"></i>');
       //Append Everything
       $(gifContainer).append(titleGif).append(newGif).append(newRating).append(delBtn);
       $(newDiv).append(gifContainer);
