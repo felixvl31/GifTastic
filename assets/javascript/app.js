@@ -121,7 +121,7 @@ function displayFavorites() {
       //Append Everything
       $(gifContainer).append(titleGif).append(newGif).append(newRating).append(delBtn);
       $(newDiv).append(gifContainer);
-      $("#gifs-view").append(newDiv);
+      $("#gifs-view").prepend(newDiv);
       //Change class for Background Color on each gif
       backgroundColor++;
       if (backgroundColor==6){
