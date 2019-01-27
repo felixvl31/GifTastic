@@ -58,7 +58,7 @@ padding-bottom:40px;
    margin:5px;
    font-weight: 700;
 }
-input,.DownloadButton{
+input,.DownloadButton,.FavoriteButton,#show-favs,.delFav{
   border: none;
   padding: 10px;
   margin: 10px;
@@ -75,7 +75,7 @@ input:hover{
 input:focus,#add-gif:hover,#add-more-gif:hover,#topBtn:hover{
   border-color:#4d90fe;
 }
-input[type="submit"],.DownloadButton {
+input[type="submit"],.DownloadButton,.FavoriteButton,#show-favs,.delFav {
   border-radius: 2px;
   background: #f2f2f2;
   border: 1px solid #f2f2f2;
@@ -88,16 +88,29 @@ input[type="submit"],.DownloadButton {
   height:36px;
 
 }
-input[type="submit"]:hover,.DownloadButton:hover {
+input[type="submit"]:hover,.DownloadButton:hover,.FavoriteButton:hover,#show-favs:hover,.delFav:hover {
   background: #f2f2f2;
   border: 1px solid #ffffff;
   color: #222;
 }
-.DownloadButton{
+.DownloadButton,.FavoriteButton,#show-favs,.delFav{
   border-radius: 10px;
 }
-.DownloadButton:hover{
+.DownloadButton:hover,.FavoriteButton:hover,#show-favs:hover,.delFav:hover{
   text-decoration-line: none; 
+}
+
+.FavoriteButton{
+  width:50px;
+  height:24px;
+}
+
+.delFav:hover{
+  background-color: #eb4132;
+}
+
+.FavoriteButton:hover,#show-favs:hover{
+  background-color: #fbbd01;
 }
 
 /* Gifs */

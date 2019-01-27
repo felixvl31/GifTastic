@@ -10,12 +10,21 @@ function titleCase(str) {
   }).join(' ');
 }
 
-// Initial array of gifs
+// Initial array of gifs and vars
 var topics = ["Elephant", "Breaking Bad", "Spider-Man", "Airplane","Computers"];
 var colors = ["Blue","Red","Yellow","Blue","Green","Red"];
 var limit=10;
 var offset=0;
 var currentGif = "";
+var favorites = JSON.parse(localStorage.getItem("favorites"));
+
+if(favorites === null){
+  var favorites ={
+  title:[],
+  source:[],
+  rating:[]
+}
+}
 
 // displayGifInfo function re-renders the HTML to display the appropriate content
 function displayGifInfo() {
@@ -36,6 +45,7 @@ function displayGifInfo() {
       var newGif = $("<img>");
       var newRating = $("<p></p>");
       var downloadBtn = $("<a download target='_blank'></a>");
+      var favBtn = $("<button></button>");
       //Var depends of data
       var title = response.data[i].title.split("GIF")[0];
       var src = response.data[i].images.original.url.split("?cid")[0];
@@ -45,9 +55,10 @@ function displayGifInfo() {
       $(titleGif).addClass("title-Gif").text(titleCase(title));
       $(newGif).attr('src', src.replace(/\.gif/i, "_s.gif")).addClass("gif");
       $(newRating).addClass("rating").text("Rating: "+response.data[i].rating.toUpperCase());
-      $(downloadBtn).attr('class',"DownloadButton").attr('href',src).text("Download");
+      $(downloadBtn).addClass("DownloadButton").attr('href',src).text("Go to Original");
+      $(favBtn).addClass("FavoriteButton").attr("data-title",title).attr("data-src-gif",src.replace(/\.gif/i, "_s.gif")).attr("data-rating",response.data[i].rating).html('<i class="fa fa-star-o" aria-hidden="true"></i>');
       //Append Everything
-      $(gifContainer).append(titleGif).append(newGif).append(newRating).append(downloadBtn);
+      $(gifContainer).append(titleGif).append(newGif).append(newRating).append(downloadBtn).append(favBtn);
       $(newDiv).append(gifContainer);
       $("#gifs-view").append(newDiv);
       //Change class for Background Color on each gif
@@ -78,6 +89,40 @@ function renderButtons() {
   }
 }
 
+//Function display Favorites
+function displayFavorites() {
+  var backgroundColor = 0;
+  $("#gifs-view").empty();
+  $(".additional-gifs").empty();
+    for(i=0;i<favorites.title.length;i++){
+      var newDiv = $("<div></div>");
+      var gifContainer = $("<div></div>");
+      var titleGif = $("<p></p>");
+      var newGif = $("<img>");
+      var newRating = $("<p></p>");
+      var delBtn = $("<button></button>");
+      //Var depends of data
+      var title = favorites.title[i];
+      var src = favorites.source[i];
+      //Add class, attributes and text to 
+      $(newDiv).addClass("col-md-3 col-sm-6");
+      $(gifContainer).addClass("gif-container"+" "+colors[backgroundColor]);
+      $(titleGif).addClass("title-Gif").text(titleCase(title));
+      $(newGif).attr('src', src).addClass("gif");
+      $(newRating).addClass("rating").text("Rating: "+favorites.rating[i].toUpperCase());
+      $(delBtn).addClass("delFav").attr("data-number",i).text("Delete");
+      //Append Everything
+      $(gifContainer).append(titleGif).append(newGif).append(newRating).append(delBtn);
+      $(newDiv).append(gifContainer);
+      $("#gifs-view").append(newDiv);
+      //Change class for Background Color on each gif
+      backgroundColor++;
+      if (backgroundColor==6){
+        backgroundColor=0;
+      }
+    }
+}
+
 // This function handles events where a add gif button is clicked
 $("#add-gif").on("click", function(event) {
   event.preventDefault();
@@ -92,6 +137,9 @@ $("#add-gif").on("click", function(event) {
   }
   renderButtons();
 });
+
+//Show Favorites
+$("#show-favs").on("click",displayFavorites);
 
 // This function handles events where a more gifs button is clicked
 $(document).on("click","#add-more-gif", function(event) {
@@ -118,6 +166,28 @@ $(document).on("click", ".gif-btn", function(){
 
 });
 
+//Clicking on add favorite Button
+$(document).on("click",".FavoriteButton",function(){
+
+  if(favorites.source.indexOf($(this).attr("data-src-gif"))<0){
+    favorites.title.push($(this).attr("data-title"));
+    favorites.source.push($(this).attr("data-src-gif"));
+    favorites.rating.push($(this).attr("data-rating"));
+
+    localStorage.setItem("favorites",JSON.stringify(favorites));
+  }
+});
+
+//Delete Favorite
+$(document).on("click",".delFav",function(){
+  var index = $(this).attr("data-number");
+  favorites.source.splice(index,1);
+  favorites.title.splice(index,1);
+  favorites.rating.splice(index,1);
+  localStorage.setItem("favorites",JSON.stringify(favorites));
+  displayFavorites();
+});
+
 // Calling the renderButtons function to display the intial buttons
 renderButtons();
 
@@ -135,5 +205,6 @@ $('body').on('click', '.gif', function() {
   }
 });
 
+//Scroll back to top
 $(document).on("click", "#topBtn", topFunction );
 
