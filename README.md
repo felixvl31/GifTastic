@@ -4,7 +4,8 @@ Gif Search
 ## Description  
 Using the GIPHY API to make a dynamic web page that populates with gifs of your choice.
 ***
-
+![Demo](./assets/demo/Giftastic.png)
+***
 ## Libraries
 * [Bootstrap](https://getbootstrap.com/)  
 * [Jquery](https://jquery.com/)   
